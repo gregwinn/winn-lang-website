@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winn — A language that ships with everything</title>
+  <meta name="description" content="Winn is a Ruby/Elixir-inspired language that compiles to the BEAM. Clean syntax, built-in HTTP server, ORM, testing, and AI pipelines. No external infrastructure needed.">
+  <meta property="og:title" content="Winn Programming Language">
+  <meta property="og:description" content="A Ruby/Elixir-inspired language that compiles to the BEAM. Ships with everything.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gregwinn.github.io/winn-lang-website/">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            winn: {
+              50: '#f0f4ff',
+              100: '#dbe4ff',
+              200: '#bac8ff',
+              300: '#91a7ff',
+              400: '#748ffc',
+              500: '#5c7cfa',
+              600: '#4c6ef5',
+              700: '#4263eb',
+              800: '#3b5bdb',
+              900: '#364fc7',
+              950: '#1e2a5e',
+            },
+          },
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-xl font-extrabold tracking-tight text-winn-800">winn</a>
+      <div class="flex items-center gap-8">
+        <a href="#features" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Features</a>
+        <a href="#code" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Code</a>
+        <a href="#roadmap" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Roadmap</a>
+        <a href="https://github.com/gregwinn/winn-lang" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">GitHub</a>
+        <a href="https://github.com/gregwinn/winn-lang/tree/main/docs" class="text-sm font-medium text-white bg-winn-700 hover:bg-winn-800 px-4 py-2 rounded-lg transition">Docs</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h1 class="text-5xl sm:text-6xl font-black tracking-tight leading-[1.1] mb-6">
+        The language that ships<br>with <span class="text-winn-600">everything.</span>
+      </h1>
+      <p class="text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Winn is a compiled language on the BEAM with clean Ruby-inspired syntax,
+        a built-in HTTP server, ORM, testing framework, and AI pipelines.
+        No external infrastructure. Just write code and ship.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div class="bg-gray-900 text-gray-100 font-mono text-sm px-6 py-3 rounded-xl flex items-center gap-3 shadow-lg">
+          <span class="text-gray-500">$</span>
+          <span>brew install gregwinn/winn/winn</span>
+          <button onclick="navigator.clipboard.writeText('brew install gregwinn/winn/winn')" class="text-gray-500 hover:text-white transition ml-2" title="Copy">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+        <a href="https://github.com/gregwinn/winn-lang/blob/main/docs/getting-started.md" class="text-sm font-semibold text-winn-700 hover:text-winn-900 transition">
+          Getting started guide &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- First code example -->
+  <section class="pb-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-gray-950 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="flex items-center gap-2 px-5 py-3 bg-gray-900/50">
+          <div class="w-3 h-3 rounded-full bg-red-400"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div class="w-3 h-3 rounded-full bg-green-400"></div>
+          <span class="ml-3 text-xs text-gray-500 font-mono">hello.winn</span>
+        </div>
+        <pre class="p-6 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">module</span> <span class="mod">Hello</span>
+  <span class="kw">def</span> <span class="fn">main</span>()
+    name = <span class="str">"World"</span>
+    <span class="mod">IO</span>.<span class="fn">puts</span>(<span class="str">"Hello, #{</span>name<span class="str">}!"</span>)
+
+    <span class="num">1</span>..<span class="num">10</span>
+      |> <span class="mod">Enum</span>.<span class="fn">filter</span>() <span class="kw">do</span> |x| x > <span class="num">5</span> <span class="kw">end</span>
+      |> <span class="mod">Enum</span>.<span class="fn">map</span>() <span class="kw">do</span> |x| x * <span class="num">100</span> <span class="kw">end</span>
+      |> <span class="mod">IO</span>.<span class="fn">inspect</span>()
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is Winn -->
+  <section class="py-20 px-6 bg-gray-50">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">
+        Ruby's readability.<br>Elixir's power.<br>Zero infrastructure.
+      </h2>
+      <p class="text-lg text-gray-600 leading-relaxed mb-4">
+        Winn compiles to the BEAM &mdash; the same battle-tested virtual machine that powers WhatsApp, Discord, and Ericsson's telecom infrastructure.
+        You get lightweight processes, hot code reloading, fault tolerance, and distributed computing built into the runtime.
+      </p>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        But unlike Erlang or Elixir, Winn ships with an HTTP server, an ORM, a testing framework,
+        a documentation generator, and a file watcher with a live dashboard.
+        No setup. No boilerplate. No twenty dependencies to install before you can write a web app.
+      </p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-16 text-center">
+        Everything you need. Nothing you don't.
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">HTTP Server</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Cowboy-powered with route matching, middleware, JSON responses, and path parameters.
+            No Express, no Flask, no Rails &mdash; it's built in.
+          </p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">ORM &amp; Migrations</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Schema DSL, changesets, validations, and a Repo backed by PostgreSQL.
+            Define your models and query with <code class="text-winn-700">User.all()</code>.
+          </p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">Testing Framework</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            <code class="text-winn-700">winn test</code> with assert, assert_equal, automatic test discovery,
+            colorized output, and exit codes. Write tests in Winn, not Erlang.
+          </p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">Pipe Operator</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Chain transformations with <code class="text-winn-700">|&gt;</code>.
+            Data flows left to right, top to bottom. No nested function calls.
+          </p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">Pattern Matching</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Multi-clause functions, destructuring, guards, switch expressions, and match blocks.
+            The compiler picks the right clause for you.
+          </p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">OTP Built In</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            GenServer, Supervisor, and Application behaviours with
+            <code class="text-winn-700">use Winn.GenServer</code>. Fault-tolerant by default.
+          </p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">Hot Code Reloading</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            <code class="text-winn-700">winn watch</code> shows a live terminal dashboard
+            with per-module status, reload times, and compile errors inline.
+          </p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">Doc Generator</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            <code class="text-winn-700">winn docs</code> generates Markdown API docs with a
+            Mermaid dependency graph that renders on GitHub.
+          </p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">Clear Error Messages</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Elm/Rust-style compiler errors with source context, caret pointers, and hints.
+            No cryptic stack traces.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Examples -->
+  <section id="code" class="py-20 px-6 bg-gray-50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-16 text-center">
+        See what Winn looks like.
+      </h2>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+
+        <!-- HTTP Server -->
+        <div>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-winn-600 mb-3">HTTP Server</h3>
+          <div class="bg-gray-950 rounded-xl overflow-hidden shadow-lg">
+            <pre class="p-5 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">module</span> <span class="mod">Api</span>
+  <span class="kw">use</span> <span class="mod">Winn</span>.<span class="mod">Router</span>
+
+  <span class="kw">def</span> <span class="fn">routes</span>()
+    [{<span class="atom">:get</span>, <span class="str">"/users/:id"</span>, <span class="atom">:get_user</span>}]
+  <span class="kw">end</span>
+
+  <span class="kw">def</span> <span class="fn">get_user</span>(conn)
+    id = <span class="mod">Server</span>.<span class="fn">path_param</span>(conn, <span class="str">"id"</span>)
+    {<span class="atom">:ok</span>, user} = <span class="mod">User</span>.<span class="fn">find</span>(id)
+    <span class="mod">Server</span>.<span class="fn">json</span>(conn, user)
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+          </div>
+        </div>
+
+        <!-- Pattern Matching -->
+        <div>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-winn-600 mb-3">Pattern Matching</h3>
+          <div class="bg-gray-950 rounded-xl overflow-hidden shadow-lg">
+            <pre class="p-5 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">module</span> <span class="mod">Math</span>
+  <span class="kw">def</span> <span class="fn">fib</span>(<span class="num">0</span>)
+    <span class="num">0</span>
+  <span class="kw">end</span>
+
+  <span class="kw">def</span> <span class="fn">fib</span>(<span class="num">1</span>)
+    <span class="num">1</span>
+  <span class="kw">end</span>
+
+  <span class="kw">def</span> <span class="fn">fib</span>(n)
+    fib(n - <span class="num">1</span>) + fib(n - <span class="num">2</span>)
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+          </div>
+        </div>
+
+        <!-- Testing -->
+        <div>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-winn-600 mb-3">Testing</h3>
+          <div class="bg-gray-950 rounded-xl overflow-hidden shadow-lg">
+            <pre class="p-5 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">module</span> <span class="mod">MathTest</span>
+  <span class="kw">use</span> <span class="mod">Winn</span>.<span class="mod">Test</span>
+
+  <span class="kw">def</span> <span class="fn">test_addition</span>()
+    assert(<span class="num">1</span> + <span class="num">1</span> == <span class="num">2</span>)
+  <span class="kw">end</span>
+
+  <span class="kw">def</span> <span class="fn">test_greeting</span>()
+    result = <span class="str">"hello"</span> <> <span class="str">" world"</span>
+    assert_equal(<span class="str">"hello world"</span>, result)
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+          </div>
+        </div>
+
+        <!-- Import & Pipes -->
+        <div>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-winn-600 mb-3">Import &amp; Pipes</h3>
+          <div class="bg-gray-950 rounded-xl overflow-hidden shadow-lg">
+            <pre class="p-5 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">module</span> <span class="mod">Pipeline</span>
+  <span class="kw">import</span> <span class="mod">Enum</span>
+
+  <span class="kw">def</span> <span class="fn">process</span>(data)
+    data
+      |> filter() <span class="kw">do</span> |x| x > <span class="num">0</span> <span class="kw">end</span>
+      |> map() <span class="kw">do</span> |x| x * <span class="num">2</span> <span class="kw">end</span>
+      |> reduce(<span class="num">0</span>) <span class="kw">do</span> |x, acc|
+        acc + x
+      <span class="kw">end</span>
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Coming Soon / Roadmap -->
+  <section id="roadmap" class="py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+        What's coming next.
+      </h2>
+      <p class="text-lg text-gray-500 mb-12">
+        Winn isn't just a language. It's becoming a platform.
+      </p>
+
+      <div class="space-y-8">
+        <div class="border-l-4 border-winn-500 pl-6">
+          <h3 class="font-bold text-lg">AI-Native Pipelines</h3>
+          <p class="text-gray-600 text-sm mt-1">
+            <code class="text-winn-700">AI.chat()</code>, <code class="text-winn-700">AI.classify()</code>,
+            <code class="text-winn-700">AI.extract()</code> as stdlib.
+            Pipe data through AI models like you pipe through Enum.
+            Agent DSL for autonomous tools. Multi-provider support.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-winn-500 pl-6">
+          <h3 class="font-bold text-lg">Distributed Events</h3>
+          <p class="text-gray-600 text-sm mt-1">
+            <code class="text-winn-700">Event.emit(:order_created, order)</code> and
+            <code class="text-winn-700">on :order_created do |order| ... end</code>.
+            Pub/sub across BEAM nodes. No Kafka. No Redis. Just Winn.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-winn-500 pl-6">
+          <h3 class="font-bold text-lg">Background Jobs</h3>
+          <p class="text-gray-600 text-sm mt-1">
+            <code class="text-winn-700">use Winn.Job</code> with queues, retries, cron schedules, and a live dashboard.
+            Database-backed. No Sidekiq. No external worker process.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-gray-300 pl-6">
+          <h3 class="font-bold text-lg">Built-in Observability</h3>
+          <p class="text-gray-600 text-sm mt-1">
+            <code class="text-winn-700">winn bench</code> for load testing.
+            <code class="text-winn-700">winn metrics</code> for a live metrics dashboard.
+            Auto HTTP metrics, custom counters, BEAM VM health.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started -->
+  <section class="py-20 px-6 bg-winn-950 text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">
+        Get started in 30 seconds.
+      </h2>
+      <div class="space-y-4 text-left max-w-md mx-auto">
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-winn-600 text-white text-sm font-bold flex items-center justify-center">1</span>
+          <div>
+            <code class="text-winn-300 font-mono text-sm">brew install gregwinn/winn/winn</code>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-winn-600 text-white text-sm font-bold flex items-center justify-center">2</span>
+          <div>
+            <code class="text-winn-300 font-mono text-sm">winn new my_app && cd my_app</code>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-winn-600 text-white text-sm font-bold flex items-center justify-center">3</span>
+          <div>
+            <code class="text-winn-300 font-mono text-sm">winn run src/my_app.winn</code>
+          </div>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://github.com/gregwinn/winn-lang/blob/main/docs/getting-started.md" class="bg-white text-winn-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+          Read the guide
+        </a>
+        <a href="https://github.com/gregwinn/winn-lang" class="text-winn-300 font-semibold hover:text-white transition">
+          View on GitHub &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-gray-100">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-sm text-gray-400">Winn v0.3.2 &mdash; Made by <a href="https://github.com/gregwinn" class="text-gray-600 hover:text-gray-900">Greg Winn</a></span>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/gregwinn/winn-lang" class="text-sm text-gray-400 hover:text-gray-900 transition">GitHub</a>
+        <a href="https://github.com/gregwinn/winn-lang/tree/main/docs" class="text-sm text-gray-400 hover:text-gray-900 transition">Docs</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=gregwinn.language-winn-vscode" class="text-sm text-gray-400 hover:text-gray-900 transition">VS Code</a>
+        <a href="https://github.com/gregwinn/winn-lang/releases" class="text-sm text-gray-400 hover:text-gray-900 transition">Releases</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
