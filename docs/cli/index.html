@@ -29,6 +29,13 @@
   <link href="/css/custom.css" rel="stylesheet">
   <link href="/css/docs.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+  <link href="/css/prism-winn.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-erlang.min.js"></script>
+  <script src="/js/prism-winn.js"></script>
 </head>
 <body class="bg-white text-gray-900 antialiased">
   <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
@@ -437,6 +444,18 @@ winn:compile_string(
   <script>
     const md = document.getElementById("md-source").textContent;
     document.getElementById("doc-content").innerHTML = marked.parse(md);
+    // Map sh to bash for Prism, then highlight all code blocks
+    document.querySelectorAll("pre code").forEach(function(block) {
+      var cls = block.className || "";
+      if (cls.indexOf("language-sh") !== -1) {
+        block.className = cls.replace("language-sh", "language-bash");
+      }
+      // Ensure unlabeled blocks get basic highlighting
+      if (!block.className || block.className.indexOf("language-") === -1) {
+        block.classList.add("language-winn");
+      }
+      Prism.highlightElement(block);
+    });
   </script>
 </body>
 </html>
