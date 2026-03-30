@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — Winn</title>
+  <meta name="description" content="Winn language documentation — getting started, language guide, standard library, ORM, OTP, CLI reference, and more.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            winn: {
+              50: '#f0f4ff',
+              100: '#dbe4ff',
+              200: '#bac8ff',
+              300: '#91a7ff',
+              400: '#748ffc',
+              500: '#5c7cfa',
+              600: '#4c6ef5',
+              700: '#4263eb',
+              800: '#3b5bdb',
+              900: '#364fc7',
+              950: '#1e2a5e',
+            },
+          },
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="../css/custom.css" rel="stylesheet">
+  <link href="../css/docs.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-xl font-extrabold tracking-tight text-winn-800">winn</a>
+      <div class="flex items-center gap-8">
+        <a href="/#features" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Features</a>
+        <a href="/#code" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Code</a>
+        <a href="/#roadmap" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Roadmap</a>
+        <a href="https://github.com/gregwinn/winn-lang" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">GitHub</a>
+        <a href="/docs/" class="text-sm font-medium text-white bg-winn-700 hover:bg-winn-800 px-4 py-2 rounded-lg transition">Docs</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pt-24 pb-20 px-6">
+    <div class="max-w-5xl mx-auto flex flex-col lg:flex-row gap-12">
+
+      <!-- Sidebar -->
+      <aside class="lg:w-56 flex-shrink-0">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">Documentation</h2>
+        <nav class="space-y-1" id="doc-nav">
+          <a href="/docs/getting-started/" class="doc-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-winn-50 hover:text-winn-700 transition">Getting Started</a>
+          <a href="/docs/language/" class="doc-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-winn-50 hover:text-winn-700 transition">Language Guide</a>
+          <a href="/docs/stdlib/" class="doc-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-winn-50 hover:text-winn-700 transition">Standard Library</a>
+          <a href="/docs/modules/" class="doc-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-winn-50 hover:text-winn-700 transition">Modules</a>
+          <a href="/docs/orm/" class="doc-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-winn-50 hover:text-winn-700 transition">ORM</a>
+          <a href="/docs/otp/" class="doc-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-winn-50 hover:text-winn-700 transition">OTP</a>
+          <a href="/docs/cli/" class="doc-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-winn-50 hover:text-winn-700 transition">CLI Reference</a>
+          <a href="/docs/roadmap/" class="doc-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-winn-50 hover:text-winn-700 transition">Roadmap</a>
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <main class="flex-1 min-w-0">
+        <h1 class="text-4xl font-extrabold tracking-tight mb-6">Documentation</h1>
+        <p class="text-lg text-gray-500 mb-12 leading-relaxed">
+          Everything you need to learn Winn, from installation to building full applications.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+
+          <a href="/docs/getting-started/" class="doc-card group block p-6 rounded-xl border border-gray-200 hover:border-winn-300 hover:shadow-md transition">
+            <h3 class="font-bold text-lg mb-2 group-hover:text-winn-700 transition">Getting Started</h3>
+            <p class="text-gray-500 text-sm">Install Winn, create a project, and build your first web service.</p>
+          </a>
+
+          <a href="/docs/language/" class="doc-card group block p-6 rounded-xl border border-gray-200 hover:border-winn-300 hover:shadow-md transition">
+            <h3 class="font-bold text-lg mb-2 group-hover:text-winn-700 transition">Language Guide</h3>
+            <p class="text-gray-500 text-sm">Variables, functions, pattern matching, pipes, modules, and more.</p>
+          </a>
+
+          <a href="/docs/stdlib/" class="doc-card group block p-6 rounded-xl border border-gray-200 hover:border-winn-300 hover:shadow-md transition">
+            <h3 class="font-bold text-lg mb-2 group-hover:text-winn-700 transition">Standard Library</h3>
+            <p class="text-gray-500 text-sm">IO, Enum, Map, String, List, File, JSON, and more core modules.</p>
+          </a>
+
+          <a href="/docs/modules/" class="doc-card group block p-6 rounded-xl border border-gray-200 hover:border-winn-300 hover:shadow-md transition">
+            <h3 class="font-bold text-lg mb-2 group-hover:text-winn-700 transition">Modules</h3>
+            <p class="text-gray-500 text-sm">HTTP server, router, middleware, and higher-level application modules.</p>
+          </a>
+
+          <a href="/docs/orm/" class="doc-card group block p-6 rounded-xl border border-gray-200 hover:border-winn-300 hover:shadow-md transition">
+            <h3 class="font-bold text-lg mb-2 group-hover:text-winn-700 transition">ORM</h3>
+            <p class="text-gray-500 text-sm">Schema DSL, changesets, validations, migrations, and PostgreSQL queries.</p>
+          </a>
+
+          <a href="/docs/otp/" class="doc-card group block p-6 rounded-xl border border-gray-200 hover:border-winn-300 hover:shadow-md transition">
+            <h3 class="font-bold text-lg mb-2 group-hover:text-winn-700 transition">OTP</h3>
+            <p class="text-gray-500 text-sm">GenServer, Supervisor, and Application behaviours in Winn.</p>
+          </a>
+
+          <a href="/docs/cli/" class="doc-card group block p-6 rounded-xl border border-gray-200 hover:border-winn-300 hover:shadow-md transition">
+            <h3 class="font-bold text-lg mb-2 group-hover:text-winn-700 transition">CLI Reference</h3>
+            <p class="text-gray-500 text-sm">All winn commands — new, run, build, test, watch, docs, and more.</p>
+          </a>
+
+          <a href="/docs/roadmap/" class="doc-card group block p-6 rounded-xl border border-gray-200 hover:border-winn-300 hover:shadow-md transition">
+            <h3 class="font-bold text-lg mb-2 group-hover:text-winn-700 transition">Roadmap</h3>
+            <p class="text-gray-500 text-sm">What's done, what's next, and where Winn is heading.</p>
+          </a>
+
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-gray-100">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-sm text-gray-400">Winn v0.3.2 &mdash; Made by <a href="https://github.com/gregwinn" class="text-gray-600 hover:text-gray-900">Greg Winn</a></span>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/gregwinn/winn-lang" class="text-sm text-gray-400 hover:text-gray-900 transition">GitHub</a>
+        <a href="/docs/" class="text-sm text-gray-400 hover:text-gray-900 transition">Docs</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=gregwinn.language-winn-vscode" class="text-sm text-gray-400 hover:text-gray-900 transition">VS Code</a>
+        <a href="https://github.com/gregwinn/winn-lang/releases" class="text-sm text-gray-400 hover:text-gray-900 transition">Releases</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+name: Sync docs from winn-lang
+
+on:
+  # Run daily to pick up doc changes
+  schedule:
+    - cron: '0 6 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+
+      - name: Fetch docs from winn-lang
+        run: |
+          DOCS=(cli getting-started language modules orm otp roadmap stdlib)
+          for doc in "${DOCS[@]}"; do
+            curl -sL "https://raw.githubusercontent.com/gregwinn/winn-lang/main/docs/${doc}.md" -o "docs/${doc}.md"
+            echo "Fetched ${doc}.md"
+          done
+
+      - name: Build doc pages
+        run: bash build-docs.sh
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet && echo "changed=false" >> "$GITHUB_OUTPUT" || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git commit -m "Sync docs from winn-lang"
+          git push
