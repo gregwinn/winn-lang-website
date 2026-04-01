@@ -215,13 +215,52 @@
         </div>
 
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2">Default Parameters</h3>
+          <h3 class="font-bold text-lg mb-2">Rails-Style Generators</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
-            <code class="text-winn-700">def greet(name, greeting = "Hello")</code> &mdash;
-            multiple arities generated automatically. Triple-quoted strings, pipe assign, block comments.
+            <code class="text-winn-700">winn create model User name:string</code> &mdash;
+            scaffold models, migrations, routers, tasks, and full CRUD.
+            <code class="text-winn-700">winn migrate</code> for schema versioning.
           </p>
         </div>
 
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2">Deploy Anywhere</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            <code class="text-winn-700">winn release</code> builds a production OTP release.
+            <code class="text-winn-700">winn release --docker</code> generates a Dockerfile.
+            The BEAM runs forever.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- No Infrastructure callout -->
+  <section class="py-20 px-6 bg-winn-950 text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">
+        No Redis. No Kafka. No Sidekiq.<br>No twenty dependencies.
+      </h2>
+      <p class="text-lg text-winn-200 leading-relaxed mb-10">
+        Other languages make you install a web framework, an ORM, a test runner, a migration tool,
+        a background job processor, a message broker, and a deployment pipeline.
+        Winn ships with all of it. PostgreSQL and SQLite. Connection pooling and transactions.
+        One <code class="text-winn-300">brew install</code> and you're building.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-6 text-left max-w-2xl mx-auto">
+        <div>
+          <div class="text-2xl font-black text-winn-400 mb-1">475+</div>
+          <div class="text-sm text-winn-300">tests passing</div>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-winn-400 mb-1">25+</div>
+          <div class="text-sm text-winn-300">CLI commands</div>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-winn-400 mb-1">2</div>
+          <div class="text-sm text-winn-300">databases (Postgres + SQLite)</div>
+        </div>
       </div>
     </div>
   </section>
@@ -294,22 +333,26 @@
           </div>
         </div>
 
-        <!-- Import & Pipes -->
+        <!-- ORM / Models -->
         <div>
-          <h3 class="font-bold text-sm uppercase tracking-wider text-winn-600 mb-3">Import &amp; Pipes</h3>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-winn-600 mb-3">Models &amp; Database</h3>
           <div class="bg-gray-950 rounded-xl overflow-hidden shadow-lg">
-            <pre class="p-5 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">module</span> <span class="mod">Pipeline</span>
-  <span class="kw">import</span> <span class="mod">Enum</span>
+            <pre class="p-5 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">module</span> <span class="mod">User</span>
+  <span class="kw">use</span> <span class="mod">Winn</span>.<span class="mod">Schema</span>
 
-  <span class="kw">def</span> <span class="fn">process</span>(data)
-    data
-      |> filter() <span class="kw">do</span> |x| x > <span class="num">0</span> <span class="kw">end</span>
-      |> map() <span class="kw">do</span> |x| x * <span class="num">2</span> <span class="kw">end</span>
-      |> reduce(<span class="num">0</span>) <span class="kw">do</span> |x, acc|
-        acc + x
-      <span class="kw">end</span>
+  <span class="kw">struct</span> [<span class="atom">:name</span>, <span class="atom">:email</span>, <span class="atom">:age</span>]
+
+  <span class="kw">schema</span> <span class="str">"users"</span> <span class="kw">do</span>
+    field <span class="atom">:name</span>, <span class="atom">:string</span>
+    field <span class="atom">:email</span>, <span class="atom">:string</span>
+    field <span class="atom">:age</span>, <span class="atom">:integer</span>
   <span class="kw">end</span>
-<span class="kw">end</span></code></pre>
+<span class="kw">end</span>
+
+<span class="cmt"># Rails-style queries</span>
+users = <span class="mod">User</span>.<span class="fn">all</span>()
+user  = <span class="mod">User</span>.<span class="fn">find</span>(<span class="num">1</span>)
+{<span class="atom">:ok</span>, user} = <span class="mod">User</span>.<span class="fn">create</span>(%{<span class="atom">name</span>: <span class="str">"Alice"</span>})</code></pre>
           </div>
         </div>
 
