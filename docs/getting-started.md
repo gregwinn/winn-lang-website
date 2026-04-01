@@ -28,7 +28,7 @@ Requires Erlang/OTP 28+ and rebar3.
 
 ```sh
 winn version
-# => winn 0.2.0
+# => winn 0.6.0
 
 winn help
 ```
@@ -36,7 +36,7 @@ winn help
 You should see:
 
 ```
-Winn 0.2.0 - a compiled language on the BEAM
+Winn 0.6.0 - a compiled language on the BEAM
 
 Usage:
   winn new <name>         Create a new Winn project
@@ -507,6 +507,69 @@ winn watch --start
 ```
 
 This starts your app and shows a live terminal dashboard. When you edit a `.winn` file, the module is recompiled and hot-reloaded without restarting the VM.
+
+---
+
+## 17. Code Generators
+
+Scaffold models, migrations, tasks, and routers:
+
+```sh
+winn create model User name:string email:string
+winn create migration CreateUsers name:string email:string
+winn create task db:seed
+winn create router Api
+winn create scaffold Post title:string body:text
+winn c model User   # shorthand
+```
+
+---
+
+## 18. Database Migrations
+
+Manage your database schema with migrations:
+
+```sh
+winn migrate              # Run all pending migrations
+winn rollback             # Rollback last migration
+winn migrate --status     # Show migration status
+```
+
+---
+
+## 19. Deployment
+
+Build production releases:
+
+```sh
+winn release              # Build a production release
+winn release --docker     # Generate a Dockerfile
+```
+
+---
+
+## 20. Metrics and Load Testing
+
+Monitor your app with built-in metrics:
+
+```winn
+Metrics.enable()
+Metrics.increment(:api_calls)
+Metrics.set(:active_users, 42)
+Metrics.observe(:latency, 12.5)
+```
+
+View a live dashboard:
+
+```sh
+winn metrics
+```
+
+Run load tests:
+
+```sh
+winn bench bench/api_bench.winn
+```
 
 ---
 

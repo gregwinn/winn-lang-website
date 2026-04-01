@@ -1,6 +1,6 @@
 # Winn ORM
 
-Winn includes a built-in ORM for PostgreSQL backed by [epgsql](https://github.com/epgsql/epgsql).
+Winn includes a built-in ORM supporting PostgreSQL and SQLite. Rails-style model methods, connection pooling, transactions, migrations, and an extensible query builder.
 
 ## Configuration
 
@@ -14,15 +14,72 @@ module MyApp
       port: 5432,
       database: "my_app_dev",
       username: "postgres",
-      password: "secret"
+      password: "secret",
+      pool_size: 10
     })
 
-    # Now Repo.insert, Repo.all, etc. use this connection
+    # Connection pool starts automatically when pool_size is set
+    # All Repo operations checkout/checkin connections from the pool
   end
 end
 ```
 
 Call `Repo.configure` early in your app (e.g., in `main()`) before any database operations. Configuration is stored in the Config ETS table and persists for the lifetime of the VM.
+
+### Connection Pool
+
+When `pool_size` is set, a GenServer-based connection pool starts automatically. Connections are reused across queries instead of opening a new one per operation.
+
+```winn
+Repo.configure(%{pool_size: 10})   # pool starts with 10 connections
+
+# Check pool status
+Repo.pool_status()  # => {:ok, %{idle: 8, busy: 2, max: 10}}
+```
+
+Without `pool_size`, Repo falls back to opening/closing a connection per query (backward compatible).
+
+### Transactions
+
+Wrap multiple operations in an atomic transaction:
+
+```winn
+Repo.transaction(fn() =>
+  {:ok, user} = User.create(%{name: "Alice"})
+  {:ok, profile} = Profile.create(%{user_id: user.id, bio: "Hello"})
+  {:ok, user}
+end)
+```
+
+Returns `{:ok, result}` on success. On any error or exception, the transaction is rolled back and returns `{:error, reason}`.
+
+### Model Query Methods
+
+Schema modules automatically get Rails-style query methods:
+
+```winn
+module User
+  use Winn.Schema
+
+  schema "users" do
+    field :name, :string
+    field :email, :string
+    field :age, :integer
+  end
+end
+
+# Query directly on the model — no need to reference Repo
+users = User.all()
+user  = User.find(1)
+user  = User.find_by(:email, "alice@example.com")
+
+{:ok, user} = User.create(%{name: "Alice", email: "alice@example.com"})
+User.delete(user)
+
+count = User.count()
+```
+
+These are generated at compile time — each method is a one-line delegation to the corresponding Repo function. You can still use `Repo.all(User)` directly if you prefer.
 
 You can also configure individual keys:
 

@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  repository_dispatch:
+    types: [docs-updated]
 
 permissions:
   contents: read
@@ -20,8 +22,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout website
         uses: actions/checkout@v4
+
+      - name: Fetch latest docs from winn-lang
+        run: |
+          git clone --depth 1 https://github.com/gregwinn/winn-lang.git /tmp/winn-lang
+          cp /tmp/winn-lang/docs/*.md docs/
+          rm -rf /tmp/winn-lang
+          echo "Synced docs from winn-lang"
 
       - name: Build docs
         run: bash build-docs.sh
