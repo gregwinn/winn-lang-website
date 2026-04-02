@@ -517,14 +517,12 @@ user  = <span class="mod">User</span>.<span class="fn">find</span>(<span class="
               </p>
             </div>
             <div class="w-full lg:w-auto flex-shrink-0">
-              <div class="bg-black/40 rounded-xl p-5 font-mono text-sm leading-relaxed border border-winn-800/50">
-<span class="text-gray-500"># Classify, extract, respond</span>
+              <pre class="bg-black/40 rounded-xl p-5 font-mono text-sm leading-relaxed border border-winn-800/50 text-gray-300 overflow-x-auto"><code><span class="text-gray-500"># Classify, extract, respond</span>
 user_msg
   |> <span style="color:#d2a8ff">AI</span>.<span style="color:#79c0ff">classify</span>(<span style="color:#ffa657">:intent</span>)
   |> <span style="color:#d2a8ff">AI</span>.<span style="color:#79c0ff">extract</span>(<span style="color:#ffa657">:entities</span>)
   |> <span style="color:#d2a8ff">AI</span>.<span style="color:#79c0ff">chat</span>(<span style="color:#a5d6ff">"gpt-4o"</span>)
-  |> <span style="color:#d2a8ff">IO</span>.<span style="color:#79c0ff">puts</span>()
-              </div>
+  |> <span style="color:#d2a8ff">IO</span>.<span style="color:#79c0ff">puts</span>()</code></pre>
             </div>
           </div>
         </div>
