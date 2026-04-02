@@ -1,8 +1,8 @@
 # Winn Roadmap
 
-## Current Status — v0.6.0
+## Current Status — v0.7.0
 
-502 tests passing. Homebrew install (`brew install gregwinn/winn/winn`). VS Code extension with syntax highlighting and compile-on-save diagnostics.
+537 tests passing. Homebrew install (`brew install gregwinn/winn/winn`). VS Code extension with syntax highlighting and compile-on-save diagnostics.
 
 ### What's Shipped
 
@@ -14,30 +14,13 @@
 | v0.4.0 | Language Power | Pipe assign (`\|>=`), triple-quoted strings, default params, structs, protocols, significant newlines, block comments |
 | v0.5.0 | Production Readiness | Connection pooling, transactions, SQLite, model methods (`User.all`), migrations, generators (`winn create`), deployment |
 | v0.6.0 | Observability | Metrics module, live metrics dashboard (`winn metrics`), load testing (`winn bench`) |
+| v0.7.0 | Core Stdlib + Packages | File I/O, Regex, Timer, Retry, DateTime/String, package system (`winn add`/`winn remove`), [winn-redis](https://github.com/gregwinn/winn-redis), [winn-mongodb](https://github.com/gregwinn/winn-mongodb), [winn-amqp](https://github.com/gregwinn/winn-amqp) |
 
 ---
 
 ## Coming Next
 
-### v0.7.0 — Core Stdlib
-
-Essential standard library additions.
-
-| Issue | Feature | Description |
-|-------|---------|-------------|
-| [#44](https://github.com/gregwinn/winn-lang/issues/44) | File I/O | `File.read`, `File.write`, `File.exists?`, `File.list` |
-| [#45](https://github.com/gregwinn/winn-lang/issues/45) | Regex | `Regex.match?`, `Regex.replace`, `Regex.scan` |
-| [#46](https://github.com/gregwinn/winn-lang/issues/46) | DateTime/String | `DateTime.add`, `String.pad_left`, safe `String.slice` |
-| [#59](https://github.com/gregwinn/winn-lang/issues/59) | RabbitMQ/AMQP | `AMQP.subscribe`, `AMQP.publish`, auto-reconnect |
-| [#60](https://github.com/gregwinn/winn-lang/issues/60) | MongoDB | `Mongo.find`, `Mongo.insert_one`, `Mongo.aggregate` |
-| [#61](https://github.com/gregwinn/winn-lang/issues/61) | Redis | `Redis.get`, `Redis.set` with TTL, pub/sub |
-| [#62](https://github.com/gregwinn/winn-lang/issues/62) | Timer/Intervals | `Timer.every`, `Timer.after` for periodic tasks |
-| [#63](https://github.com/gregwinn/winn-lang/issues/63) | Env defaults | `System.get_env("KEY", "default")` |
-| [#64](https://github.com/gregwinn/winn-lang/issues/64) | Retry | `Retry.run` with exponential backoff |
-
 ### v0.8.0 — Web Framework
-
-Everything needed for production web apps.
 
 | Issue | Feature | Description |
 |-------|---------|-------------|
@@ -50,8 +33,6 @@ Everything needed for production web apps.
 
 ### v0.9.0 — Developer Tooling
 
-Tools that make writing Winn code faster.
-
 | Issue | Feature | Description |
 |-------|---------|-------------|
 | [#52](https://github.com/gregwinn/winn-lang/issues/52) | Formatter | `winn fmt` for consistent code style |
@@ -61,8 +42,6 @@ Tools that make writing Winn code faster.
 
 ### v0.10.0 — Hardening
 
-Stability and safety improvements.
-
 | Issue | Feature | Description |
 |-------|---------|-------------|
 | [#56](https://github.com/gregwinn/winn-lang/issues/56) | Compiler errors | Better error handling for edge cases |
@@ -70,8 +49,6 @@ Stability and safety improvements.
 | [#58](https://github.com/gregwinn/winn-lang/issues/58) | Bounds checking | Safe defaults for runtime functions |
 
 ### v1.0.0 — The Winn Platform
-
-The features that make Winn a platform, not just a language.
 
 | Issue | Feature | Description |
 |-------|---------|-------------|
