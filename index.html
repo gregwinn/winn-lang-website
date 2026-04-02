@@ -175,10 +175,10 @@
         </div>
 
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2">OTP Built In</h3>
+          <h3 class="font-bold text-lg mb-2">Stateful Agents</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
-            GenServer, Supervisor, and Application behaviours with
-            <code class="text-winn-700">use Winn.GenServer</code>. Fault-tolerant by default.
+            <code class="text-winn-700">agent Counter</code> with <code class="text-winn-700">@state</code> syntax.
+            First-class actors that compile to GenServer &mdash; zero boilerplate, full OTP power.
           </p>
         </div>
 
@@ -250,7 +250,7 @@
       </p>
       <div class="grid sm:grid-cols-3 gap-6 text-left max-w-2xl mx-auto">
         <div>
-          <div class="text-2xl font-black text-winn-400 mb-1">475+</div>
+          <div class="text-2xl font-black text-winn-400 mb-1">562</div>
           <div class="text-sm text-winn-300">tests passing</div>
         </div>
         <div>
@@ -314,22 +314,24 @@
           </div>
         </div>
 
-        <!-- Testing -->
+        <!-- Agents -->
         <div>
-          <h3 class="font-bold text-sm uppercase tracking-wider text-winn-600 mb-3">Testing</h3>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-winn-600 mb-3">Stateful Agents</h3>
           <div class="bg-gray-950 rounded-xl overflow-hidden shadow-lg">
-            <pre class="p-5 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">module</span> <span class="mod">MathTest</span>
-  <span class="kw">use</span> <span class="mod">Winn</span>.<span class="mod">Test</span>
+            <pre class="p-5 text-sm leading-relaxed overflow-x-auto"><code class="language-winn"><span class="kw">agent</span> <span class="mod">Counter</span>
+  state count = <span class="num">0</span>
 
-  <span class="kw">def</span> <span class="fn">test_addition</span>()
-    assert(<span class="num">1</span> + <span class="num">1</span> == <span class="num">2</span>)
+  <span class="kw">def</span> <span class="fn">increment</span>()
+    <span class="state">@count</span> = <span class="state">@count</span> + <span class="num">1</span>
   <span class="kw">end</span>
 
-  <span class="kw">def</span> <span class="fn">test_greeting</span>()
-    result = <span class="str">"hello"</span> <> <span class="str">" world"</span>
-    assert_equal(<span class="str">"hello world"</span>, result)
+  <span class="kw">def</span> <span class="fn">value</span>()
+    <span class="state">@count</span>
   <span class="kw">end</span>
-<span class="kw">end</span></code></pre>
+<span class="kw">end</span>
+
+c = <span class="mod">Counter</span>.<span class="fn">start</span>()
+<span class="mod">Counter</span>.<span class="fn">increment</span>(c)</code></pre>
           </div>
         </div>
 
@@ -522,12 +524,12 @@ user  = <span class="mod">User</span>.<span class="fn">find</span>(<span class="
           </p>
         </div>
 
-        <div class="border-l-4 border-gray-300 pl-6">
-          <h3 class="font-bold text-lg">Built-in Observability</h3>
+        <div class="border-l-4 border-winn-500 pl-6">
+          <h3 class="font-bold text-lg">Supervised Pipelines</h3>
           <p class="text-gray-600 text-sm mt-1">
-            <code class="text-winn-700">winn bench</code> for load testing.
-            <code class="text-winn-700">winn metrics</code> for a live metrics dashboard.
-            Auto HTTP metrics, custom counters, BEAM VM health.
+            <code class="text-winn-700">pipeline OrderProcessor</code> with declarative stages,
+            automatic backpressure, retry, and concurrency.
+            Each stage is a supervised agent. No Kafka. No Celery.
           </p>
         </div>
       </div>
@@ -574,7 +576,7 @@ user  = <span class="mod">User</span>.<span class="fn">find</span>(<span class="
   <!-- Footer -->
   <footer class="py-12 px-6 border-t border-gray-100">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="text-sm text-gray-400">Winn v0.7.0 &mdash; Made by <a href="https://github.com/gregwinn" class="text-gray-600 hover:text-gray-900">Greg Winn</a></span>
+      <span class="text-sm text-gray-400">Winn v0.8.0 &mdash; Made by <a href="https://github.com/gregwinn" class="text-gray-600 hover:text-gray-900">Greg Winn</a></span>
       <div class="flex items-center gap-6">
         <a href="https://github.com/gregwinn/winn-lang" class="text-sm text-gray-400 hover:text-gray-900 transition">GitHub</a>
         <a href="/docs/" class="text-sm text-gray-400 hover:text-gray-900 transition">Docs</a>
