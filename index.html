@@ -50,7 +50,7 @@
       <div class="flex items-center gap-8">
         <a href="#features" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Features</a>
         <a href="#code" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Code</a>
-        <a href="#roadmap" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Roadmap</a>
+        <a href="https://winn.ws/docs/roadmap/" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Roadmap</a>
         <a href="https://github.com/gregwinn/winn-lang" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">GitHub</a>
         <a href="/docs/" class="text-sm font-medium text-white bg-winn-700 hover:bg-winn-800 px-4 py-2 rounded-lg transition">Docs</a>
       </div>
@@ -486,52 +486,126 @@ user  = <span class="mod">User</span>.<span class="fn">find</span>(<span class="
     </div>
   </section>
 
-  <!-- Coming Soon / Roadmap -->
-  <section id="roadmap" class="py-20 px-6">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
-        What's coming next.
-      </h2>
-      <p class="text-lg text-gray-500 mb-12">
-        Winn isn't just a language. It's becoming a platform.
-      </p>
+  <!-- Coming Soon / Vision -->
+  <section id="roadmap" class="py-24 px-6 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-6">
+          The BEAM's first<br><span class="text-winn-600">AI-native</span> language.
+        </h2>
+        <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          Every feature below is a language keyword &mdash; not a library.
+          Winn is building the platform where distributed systems, AI pipelines,
+          and real-time events are one <code class="text-winn-600 font-semibold">import</code> away.
+        </p>
+      </div>
 
-      <div class="space-y-8">
-        <div class="border-l-4 border-winn-500 pl-6">
-          <h3 class="font-bold text-lg">AI-Native Pipelines</h3>
-          <p class="text-gray-600 text-sm mt-1">
-            <code class="text-winn-700">AI.chat()</code>, <code class="text-winn-700">AI.classify()</code>,
-            <code class="text-winn-700">AI.extract()</code> as stdlib.
-            Pipe data through AI models like you pipe through Enum.
-            Agent DSL for autonomous tools. Multi-provider support.
-          </p>
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+
+        <!-- AI Pipelines — hero card -->
+        <div class="md:col-span-2 bg-gradient-to-br from-winn-950 to-gray-900 rounded-2xl p-8 sm:p-10 text-white shadow-xl">
+          <div class="flex items-start justify-between gap-6 flex-col lg:flex-row">
+            <div class="flex-1">
+              <div class="text-xs font-bold uppercase tracking-widest text-winn-400 mb-3">v1.0 Flagship</div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold mb-4">AI-Native Pipelines</h3>
+              <p class="text-winn-200 leading-relaxed mb-6">
+                Pipe data through LLMs the same way you pipe through Enum.
+                <code class="text-winn-300">AI.chat()</code>, <code class="text-winn-300">AI.classify()</code>,
+                <code class="text-winn-300">AI.extract()</code> as stdlib.
+                Agent DSL for autonomous tools with built-in retries and streaming.
+                No LangChain. No wrapper libraries. Just Winn.
+              </p>
+            </div>
+            <div class="w-full lg:w-auto flex-shrink-0">
+              <div class="bg-black/40 rounded-xl p-5 font-mono text-sm leading-relaxed border border-winn-800/50">
+<span class="text-gray-500"># Classify, extract, respond</span>
+user_msg
+  |> <span style="color:#d2a8ff">AI</span>.<span style="color:#79c0ff">classify</span>(<span style="color:#ffa657">:intent</span>)
+  |> <span style="color:#d2a8ff">AI</span>.<span style="color:#79c0ff">extract</span>(<span style="color:#ffa657">:entities</span>)
+  |> <span style="color:#d2a8ff">AI</span>.<span style="color:#79c0ff">chat</span>(<span style="color:#a5d6ff">"gpt-4o"</span>)
+  |> <span style="color:#d2a8ff">IO</span>.<span style="color:#79c0ff">puts</span>()
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="border-l-4 border-winn-500 pl-6">
-          <h3 class="font-bold text-lg">Distributed Events</h3>
-          <p class="text-gray-600 text-sm mt-1">
-            <code class="text-winn-700">Event.emit(:order_created, order)</code> and
-            <code class="text-winn-700">on :order_created do |order| ... end</code>.
-            Pub/sub across BEAM nodes. No Kafka. No Redis. Just Winn.
+        <!-- Reactive Events -->
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition">
+          <div class="text-xs font-bold uppercase tracking-widest text-winn-500 mb-3">Language Keyword</div>
+          <h3 class="text-xl font-extrabold mb-3">Reactive Events</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-5">
+            <code class="text-winn-700 font-semibold">on :event do</code> as syntax.
+            Pub/sub across every BEAM node with zero infrastructure.
+            No Kafka. No Redis. No RabbitMQ. The VM <em>is</em> the message bus.
           </p>
+          <div class="bg-gray-950 rounded-lg p-4 font-mono text-xs leading-relaxed text-gray-300">
+<span style="color:#ff7b72">on</span> <span style="color:#ffa657">:order_placed</span> <span style="color:#ff7b72">do</span> |order|
+  <span style="color:#d2a8ff">Notification</span>.<span style="color:#79c0ff">send</span>(order.user)
+<span style="color:#ff7b72">end</span>
+          </div>
         </div>
 
-        <div class="border-l-4 border-winn-500 pl-6">
-          <h3 class="font-bold text-lg">Background Jobs</h3>
-          <p class="text-gray-600 text-sm mt-1">
-            <code class="text-winn-700">use Winn.Job</code> with queues, retries, cron schedules, and a live dashboard.
+        <!-- Supervised Pipelines -->
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition">
+          <div class="text-xs font-bold uppercase tracking-widest text-winn-500 mb-3">Language Keyword</div>
+          <h3 class="text-xl font-extrabold mb-3">Supervised Pipelines</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-5">
+            <code class="text-winn-700 font-semibold">pipeline</code> with declarative stages.
+            Each stage is a supervised agent with retry, timeout, concurrency, and backpressure.
+            No Celery. No Bull. No step functions.
+          </p>
+          <div class="bg-gray-950 rounded-lg p-4 font-mono text-xs leading-relaxed text-gray-300">
+<span style="color:#ff7b72">pipeline</span> <span style="color:#d2a8ff">Ingest</span>
+  <span style="color:#ff7b72">stage</span> <span style="color:#ffa657">:parse</span>, retry: <span style="color:#79c0ff">3</span>
+  <span style="color:#ff7b72">stage</span> <span style="color:#ffa657">:enrich</span>, concurrency: <span style="color:#79c0ff">10</span>
+  <span style="color:#ff7b72">stage</span> <span style="color:#ffa657">:store</span>
+<span style="color:#ff7b72">end</span>
+          </div>
+        </div>
+
+        <!-- Background Jobs -->
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition">
+          <div class="text-xs font-bold uppercase tracking-widest text-winn-500 mb-3">Zero Infrastructure</div>
+          <h3 class="text-xl font-extrabold mb-3">Background Jobs</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-5">
+            <code class="text-winn-700 font-semibold">use Winn.Job</code> with queues, retries, cron, and a live dashboard.
             Database-backed. No Sidekiq. No external worker process.
+            Schedule with <code class="text-winn-700">@cron "0 */6 * * *"</code>.
           </p>
+          <div class="bg-gray-950 rounded-lg p-4 font-mono text-xs leading-relaxed text-gray-300">
+<span style="color:#ff7b72">module</span> <span style="color:#d2a8ff">SyncJob</span>
+  <span style="color:#ff7b72">use</span> <span style="color:#d2a8ff">Winn</span>.<span style="color:#d2a8ff">Job</span>
+  <span style="color:#8b949e"># runs every 6 hours</span>
+  @cron <span style="color:#a5d6ff">"0 */6 * * *"</span>
+  <span style="color:#ff7b72">def</span> <span style="color:#79c0ff">perform</span>()
+    <span style="color:#d2a8ff">API</span>.<span style="color:#79c0ff">sync_all</span>()
+  <span style="color:#ff7b72">end</span>
+<span style="color:#ff7b72">end</span>
+          </div>
         </div>
 
-        <div class="border-l-4 border-winn-500 pl-6">
-          <h3 class="font-bold text-lg">Supervised Pipelines</h3>
-          <p class="text-gray-600 text-sm mt-1">
-            <code class="text-winn-700">pipeline OrderProcessor</code> with declarative stages,
-            automatic backpressure, retry, and concurrency.
-            Each stage is a supervised agent. No Kafka. No Celery.
+        <!-- Distributed Clustering -->
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition">
+          <div class="text-xs font-bold uppercase tracking-widest text-winn-500 mb-3">One Line</div>
+          <h3 class="text-xl font-extrabold mb-3">Distributed Clustering</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-5">
+            Connect nodes and your agents, events, and pipelines automatically span machines.
+            The BEAM's killer feature &mdash; 35 years of battle-tested distribution &mdash; made trivial.
           </p>
+          <div class="bg-gray-950 rounded-lg p-4 font-mono text-xs leading-relaxed text-gray-300">
+<span style="color:#d2a8ff">Winn</span>.<span style="color:#79c0ff">connect</span>(<span style="color:#ffa657">:app@us_east</span>)
+<span style="color:#d2a8ff">Winn</span>.<span style="color:#79c0ff">connect</span>(<span style="color:#ffa657">:app@eu_west</span>)
+<span style="color:#8b949e"># events and agents now span</span>
+<span style="color:#8b949e"># all three nodes automatically</span>
+          </div>
         </div>
+
+      </div>
+
+      <div class="text-center">
+        <a href="https://winn.ws/docs/roadmap/" class="text-sm font-semibold text-winn-700 hover:text-winn-900 transition">
+          Full roadmap &rarr;
+        </a>
       </div>
     </div>
   </section>
