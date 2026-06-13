@@ -79,7 +79,7 @@ TEMPLATE_HEAD='<!DOCTYPE html>
   </div>
   <footer class="py-12 px-6 border-t border-gray-100">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="text-sm text-gray-400">Winn v0.9.0 — Made by <a href="https://github.com/gregwinn" class="text-gray-600 hover:text-gray-900">Greg Winn</a></span>
+      <span class="text-sm text-gray-400">Winn v0.9.4 — Made by <a href="https://github.com/gregwinn" class="text-gray-600 hover:text-gray-900">Greg Winn</a></span>
       <div class="flex items-center gap-6">
         <a href="https://github.com/gregwinn/winn-lang" class="text-sm text-gray-400 hover:text-gray-900 transition">GitHub</a>
         <a href="/docs/" class="text-sm text-gray-400 hover:text-gray-900 transition">Docs</a>
@@ -110,17 +110,19 @@ TEMPLATE_TAIL='</script>
 </body>
 </html>'
 
-# Map of slug -> title
-declare -A TITLES=(
-  ["getting-started"]="Getting Started"
-  ["language"]="Language Guide"
-  ["stdlib"]="Standard Library"
-  ["modules"]="Modules"
-  ["orm"]="ORM"
-  ["otp"]="OTP"
-  ["cli"]="CLI Reference"
-  ["roadmap"]="Roadmap"
-)
+# Map of slug -> title (function form for bash 3.2 / stock-macOS compatibility)
+title_for() {
+  case "$1" in
+    getting-started) echo "Getting Started" ;;
+    language)        echo "Language Guide" ;;
+    stdlib)          echo "Standard Library" ;;
+    modules)         echo "Modules" ;;
+    orm)             echo "ORM" ;;
+    otp)             echo "OTP" ;;
+    cli)             echo "CLI Reference" ;;
+    roadmap)         echo "Roadmap" ;;
+  esac
+}
 
 SLUGS=("getting-started" "language" "stdlib" "modules" "orm" "otp" "cli" "roadmap")
 
@@ -134,7 +136,7 @@ for slug in "${SLUGS[@]}"; do
   out_dir="$DOCS_DIR/$slug"
   mkdir -p "$out_dir"
 
-  title="${TITLES[$slug]}"
+  title="$(title_for "$slug")"
 
   # Build the page — replace title and nav active state
   page="$TEMPLATE_HEAD"
